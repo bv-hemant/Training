@@ -9,7 +9,6 @@ class Node
 end
 
 class Bst
-
 attr_accessor :numbers,:root_node
 	
 	def create_bst(input)
@@ -221,7 +220,7 @@ loop do
 	 	tree.numbers=file_data.split("\n").map(&:to_i)
 	 	tree.create_bst(tree.numbers)
 
-   else 
+  else 
 		 puts "Please Choose the Correct Option"
 	end
 end
