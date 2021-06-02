@@ -33,7 +33,6 @@ attr_accessor :numbers,:root_node
 	end
 
 	def largest_element(root_node)
-
 		if root_node.nil?
 			return
 		elsif root_node.right.nil?
@@ -72,7 +71,6 @@ attr_accessor :numbers,:root_node
 	end
 
 	def preorder (root_node)
-		
 		if root_node.nil?
 			return
 		end
@@ -226,5 +224,4 @@ loop do
    else 
 		 puts "Please Choose the Correct Option"
 	end
-
 end
