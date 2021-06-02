@@ -9,7 +9,7 @@ class Node
 end
 
 class Bst
-attr_accessor :numbers,:root_node
+	attr_accessor :numbers,:root_node
 	
 	def create_bst(input)
 		position=0
