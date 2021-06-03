@@ -20,5 +20,3 @@ when different_data_structure.fetch(:linked_list)
 	
 else puts "wrong choice"	
 end
-
-

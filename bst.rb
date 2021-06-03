@@ -163,13 +163,13 @@ class Bst
 			when different_task.fetch(:largest_element)	#largest element
 				node = largest_element(@root_node)
 				if(node != nil)
-					node.data
+					puts node.data
 				end
 
 			when different_task.fetch(:smallest_element) #smalleste element
 				node = smallest_element(@root_node)
 				if(node != nil)
-					node.data
+					puts node.data
 				end
 
 			when different_task.fetch(:inorder_traversal)	#inorder traversal
