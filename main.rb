@@ -15,17 +15,17 @@ puts "9 : All Path from Root to leaf"
 puts "10: Input from file"
 
 different_task = 
-		{quit: 0,
-		 insert_no: 1,
-		 largest_element: 2,
-		 smallest_element: 3,
-     inorder_traversal: 4,
-     postorder_traversal: 5,
-     preorder_traversal: 6,
-     search_element: 7,
-     delete_node: 8,
-     all_path_root_leaf: 9,
-     input_file: 10 }
+	{quit: 0,
+	insert_no: 1,
+	largest_element: 2,
+	smallest_element: 3,
+  inorder_traversal: 4,
+  postorder_traversal: 5,
+  preorder_traversal: 6,
+  search_element: 7,
+  delete_node: 8,
+  all_path_root_leaf: 9,
+  input_file: 10 }
 
 loop do
 
@@ -35,8 +35,8 @@ loop do
 	case task.to_i
 	when different_task.fetch(:quit)   #quit 
 		File.open('Output', 'w') do |f|   
-    	f.puts tree.numbers  
-    end
+    			f.puts tree.numbers  
+    		end
 		break
 
 	when different_task.fetch(:insert_no) 	#Insert
