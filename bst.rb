@@ -80,7 +80,7 @@ class Bst
 
 	def delete_node(root_node,value)
 		if root_node.nil?
-		  return root_node	
+		 	return root_node	
 		elsif value > root_node.data
 			root_node.right = delete_node(root_node.right,value)
 		elsif value < root_node.data
