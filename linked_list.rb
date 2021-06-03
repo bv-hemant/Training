@@ -1,6 +1,6 @@
 load "node_linked_list.rb"
-
-class Linked_list
+load "string.rb"
+class Linkedlist < String
 	attr_accessor :head_node
 
 	def search_element(value)
@@ -22,7 +22,7 @@ class Linked_list
 
 		if(current_node != nil && current_node.data == value)
 			@head_node = current_node.next
-			return
+			
 		else
 			prev = nil
 			while (current_node != nil && current_node.data != value)
@@ -50,7 +50,7 @@ class Linked_list
 		new_node = NodeLinkedList.new(value)
 		current_node = @head_node
 
-		if(current_node == nil)
+		if current_node.nil?
 			@head_node = new_node
 			return
 		end
@@ -62,7 +62,7 @@ class Linked_list
 		current_node.next = new_node
 	end
 
-	def reverse_linked_list()
+	def reverse_linked_list
 		current_node = @head_node
 		prev_node = nil
 		next_node = nil
@@ -77,7 +77,7 @@ class Linked_list
 		@head_node = prev_node
 	end
 
-	def print_linked_list()
+	def print_linked_list
 		current_node = @head_node
 		while current_node != nil
 			puts current_node.data
@@ -85,7 +85,7 @@ class Linked_list
 		end
 	end
 
-	def perform_task()
+	def perform_task
 		different_task = 
 				{quit: 0,
 				search_element: 1,
@@ -95,43 +95,50 @@ class Linked_list
 				print_ll: 5,
 			 	}
 
-		puts "#{different_task.fetch(:quit)}: Quit",
-			 "#{different_task.fetch(:search_element)}: Search an element",
-			 "#{different_task.fetch(:delete_node)}: Delete an element",
-			 "#{different_task.fetch(:insert_node)}: Insert an element",
-			 "#{different_task.fetch(:reverse_ll)}: Reverse Linked list",
-			 "#{different_task.fetch(:print_ll)}: Print Linked List"
+		puts "#{different_task[:quit]}: Quit",
+			 "#{different_task[:search_element]}: Search an element",
+			 "#{different_task[:delete_node]}: Delete an element",
+			 "#{different_task[:insert_node]}: Insert an element",
+			 "#{different_task[:reverse_ll]}: Reverse Linked list",
+			 "#{different_task[:print_ll]}: Print Linked List"
 
 		loop do
 			print "\nEnter your choice : "
 			task = gets
+			if(task.integer?)
+				case task.to_i
+				when different_task[:quit]
+					break
+
+				when different_task[:search_element]
+					puts "enter no. to search"
+					value = gets
+					puts search_element(value.to_i)
+
+				when different_task[:delete_node]
+					puts "enter no. to Delete"
+					value = gets
+					delete_node(value.to_i)
 		
-			case task.to_i
-			when different_task.fetch(:quit)
-				break
+				when different_task[:insert_node]
+					correct_input = true
+					input = gets	
+					input_arr = input.split(",")
+					numbers = integer_array(input_arr)
+					if numbers.size > 0
+						create_linked_list(numbers)
+					end
 
-			when different_task.fetch(:search_element)
-				puts "enter no. to search"
-				value = gets
-				puts search_element(value.to_i)
+				when different_task[:reverse_ll]
+					reverse_linked_list
 
-			when different_task.fetch(:delete_node)
-				puts "enter no. to Delete"
-				value = gets
-				delete_node(value.to_i)
-	
-			when different_task.fetch(:insert_node)
-				input = gets	
-				numbers = input.split(",").map(&:to_i)
-				create_linked_list(numbers)
+				when different_task[:print_ll]
+					print_linked_list
 
-			when different_task.fetch(:reverse_ll)
-				reverse_linked_list
-
-			when different_task.fetch(:print_ll)
-				print_linked_list
-
-			else puts "Please Choose the Correct Option"
+				else puts "Please Choose the Correct Option"
+				end
+			else
+				puts "wrong Input"
 			end 
 		end 
 	end
