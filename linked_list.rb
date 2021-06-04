@@ -1,7 +1,14 @@
 load "node_linked_list.rb"
-load "string.rb"
-class Linkedlist < String
+
+class Linkedlist 
 	attr_accessor :head_node
+
+	def check_input_array(arr)
+		arr.each { |e|
+		return false if e.to_s !~ /^\d+$/
+		}
+		true
+	end
 
 	def search_element(value)
 		result = false
@@ -105,7 +112,7 @@ class Linkedlist < String
 		loop do
 			print "\nEnter your choice : "
 			task = gets
-			if(task.integer?)
+			if(task =~ /^\d+$/)
 				case task.to_i
 				when different_task[:quit]
 					break
@@ -124,10 +131,14 @@ class Linkedlist < String
 					correct_input = true
 					input = gets	
 					input_arr = input.split(",")
-					numbers = integer_array(input_arr)
-					if numbers.size > 0
+
+					if check_input_array(input_arr)
+						numbers = input_arr.map(&:to_i)
 						create_linked_list(numbers)
+					else
+						puts "wrong Input"
 					end
+
 
 				when different_task[:reverse_ll]
 					reverse_linked_list

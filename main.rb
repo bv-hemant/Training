@@ -1,6 +1,6 @@
 load "bst.rb"
 load "linked_list.rb"
-load "string.rb"
+
 different_data_structure = {bst: 0, linked_list: 1}
 
 puts	"#{different_data_structure.fetch(:bst)}: Binary search tree" ,
@@ -8,7 +8,7 @@ puts	"#{different_data_structure.fetch(:bst)}: Binary search tree" ,
 
 print "enter your choice : "
 type_of_ds = gets
-if(type_of_ds.integer?)
+if(type_of_ds =~ /^\d+$/)
 	case type_of_ds.to_i
 	when different_data_structure.fetch(:bst)
 		tree = Bst.new

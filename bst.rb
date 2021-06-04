@@ -1,6 +1,6 @@
 load "node_tree.rb"
-load "string.rb"
-class Bst < String 
+
+class Bst 
 	attr_accessor :numbers, :root_node
 	
 	def create_bst(input)
@@ -8,6 +8,13 @@ class Bst < String
 		input.each do |n|
 			@root_node = insert_Node(@root_node,n)	
 		end
+	end
+
+	def check_input_array(arr)
+		arr.each { |e|
+		return false if e.to_s !~ /^\d+$/
+		}
+		true
 	end
 	
 	def insert_Node(root_node,value)
@@ -147,7 +154,8 @@ class Bst < String
 
 			print "\nEnter your Choice : "
 			task = gets
-			if(task.integer?)
+			if (task =~ /^\d+$/)
+				
 				case task.to_i
 				when different_task[:quit]   #quit 
 					File.open('Output', 'w') do |f|   
@@ -155,13 +163,16 @@ class Bst < String
 					end
 					break
 
-				when different_task[:insert_n] 	#Insert
+				when different_task[:insert_no] 	#Insert
 					input = gets	
-					@numbers = input.split(",")
-					@numbers = integer_array(input_arr)
-					if @numbers.size > 0
+					input_arr = input.split(",")
+					if check_input_array(input_arr)
+						@numbers = input_arr.map(&:to_i)
 						create_bst(@numbers)
+					else
+						puts "wrong Input"
 					end
+
 
 				when different_task[:largest_element]	#largest element
 					node = largest_element(@root_node)
@@ -211,16 +222,18 @@ class Bst < String
 					file_data = file.read
 					@numbers = []
 					input_arr = file_data.split("\n")
-					@numbers = integer_array(input_arr)
 
-					if @numbers.size > 0
+					if check_input_array(input_arr)
+						@numbers = input_arr.map(&:to_i)
 						create_bst(@numbers)
+					else
+						puts "wrong Input"
 					end
 
 				else puts "Please Choose the Correct Option"
 				end
 			else
-				puts "Please Choose the Correct Option"
+				puts "Please Choose the Correct 0 Option"
 			end
 		end
 	end
